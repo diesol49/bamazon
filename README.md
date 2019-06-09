@@ -1,6 +1,4 @@
-##Bamazon :information_desk_person:
-
-## Description :eyes:
+## Description of Bamazon :eyes: :information_desk_person:
 ***
 
 It's Amazon's step-cousin, Bamazon. It's a mini storefront that allows users to view and purchase items as a customer!
@@ -17,7 +15,7 @@ After installing your packages, go ahead and run **bamazonCustomer.js** by input
 
 _Now just follow the prompts!_
 
-![Table](customer_table.png)
+![Table](https://github.com/diesol49/bamazon/blob/master/images/customer_table.png)
 
 ##### Video :vhs: :clapper:
 Here's a video of how it works!
