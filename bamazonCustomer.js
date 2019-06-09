@@ -59,36 +59,56 @@ function displayTable() {
     }
     console.log(table.toString());
     });
-}
-//************** REMEMBER TO MOVE THIS CALL TO THE BOTTOM ONCE DONE WITH HW */
-displayTable();
+} displayTable();
 
 /////////////
 // NOW WE NEED TO CREATE OUR FUNCTION PROMPT
 // SO THAT THE USER COULD PURCHASE A PRODUCT
 ////////////
-function buyPrompt() {
+function buyStuff() {
     inquirer.prompt([
         {
-            name: "myItem",
-            type: "input",
-            message: "Input the ID# of the item you wish to purchase."
+            name: "itemID",
+            message: "Input the ID # you wish to purchase.",
+            type: "input"
         },
         {
-            name: "itemQTY",
-            type: "input",
-            message: "How many would you like?",
-            validate: function(value) {
-                if (isNaN(value) === false) {
-                    return true;
-                }
-                return false;
-            }
+            name: "qty",
+            message: "How many do you want?",
+            type: "input"
         }
-])
-.then(function(answer) {
-    connection.query(
-        "SELECT item_id, product_name, price, stock_quatity FROM products WHERE ?"
-    );
-})
-}
+    ]).then(function(answer) {
+        connection.query("SELECT stock_quantity, price FROM products WHERE ?",
+        {
+            item_id: answer.itemID
+        },
+        function(err, res) {
+            if (err) throw err;
+// WERE CREATING A RESPONSE FOR OUR CONNECTION.QUERY. NOW WE CAN MODIFY
+// OUR CONSOLE BY ADDING VARIABLES AND CONCATINATING OUR DATABASE            
+            if (answer.qty > res[0].stock_quantity) {
+                console.log("Insufficient Quantity! Please try again".red);
+                connection.end();
+            } else {
+                let purchase = res[0].stock_quantity - answer.qty;
+                let cart = res[0].price * answer.qty;
+                connection.query(
+                    "UPDATE products SET stock_quantity = ? WHERE item_id = ?",
+                    [purchase, answer.itemID],
+                    function(req,res){
+                        console.log("||||||||||||||||||||".zebra);
+                        console.log("Great! We have that in stock!".magenta);
+                        console.log("Your total is ".magenta + "$" + cart);
+                        console.log("Thank you for shopping BAMAZON!".magenta);
+                        console.log("Please come again!".magenta);
+                        console.log("||||||||||||||||||||".zebra);
+                    }
+                )
+            }
+        
+        });
+        
+    })
+} buyStuff();
+
+
