@@ -6,7 +6,6 @@
 It's Amazon's step-cousin, Bamazon. It's a mini storefront that allows users to view and purchase items as a customer!
 
 ## Bamazon Customer :purse: :purse: :purse:
-***
 
 The JS file allows users to use their terminal and make a selection on the screen by making sure they follow the prompts on their terminal. Before you begin, make sure you install the necessary npm packages before you being:
 - [x] npm i mysql
