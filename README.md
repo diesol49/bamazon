@@ -23,7 +23,7 @@ _Now just follow the prompts!_
 ##### Video :vhs: :clapper:
 Here's a video of how it works!
 (https://drive.google.com/file/d/17CEz77LxJ9gLWiVfxJ2ccFdt7gXjMz4Q/view)
-
+***
 #### Technologies Used: :shipit:
 * Javascript
 * nodeJS
